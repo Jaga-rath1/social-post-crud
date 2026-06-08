@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show All Posts</title>
+    <link rel="stylesheet" href="/css/show.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>All Posts</h1>
+
+            <a href="/posts/new" class="create-btn">
+                + Create New Post
+            </a>
+        </div>
+
+        <div class="posts-grid">
+
+            <% for(post of posts){ %>
+
+                <div class="post-card">
+
+                    <h3><%= post.username %></h3>
+
+                    <p class="content">
+                        <%= post.content %>
+                    </p>
+
+                    <span class="likes">
+                        ❤️ <%= post.likes %> Likes
+                    </span>
+
+                    <div class="btn-group">
+
+                        <form action="/posts/<%= post._id %>" method="get">
+                            <button class="details-btn">
+                                Details
+                            </button>
+                        </form>
+
+                        <form action="/posts/<%=post._id %>/edit" method="get">
+                            <button class="edit-btn">
+                                Edit
+                            </button>
+                        </form>
+
+                        <form action="/posts/<%= post._id %>?_method=DELETE" method="post">
+                            <button class="delete-btn">
+                                Delete
+                            </button>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            <% } %>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
